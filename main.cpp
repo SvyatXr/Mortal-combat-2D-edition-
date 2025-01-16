@@ -1,0 +1,147 @@
+#include "TXLib.h"
+struct Button
+{
+
+    int x;
+    int y;
+    int w;
+    int h;
+    const char* text;
+    bool visible;
+
+   void draw()
+   {
+     txSetColor (TX_WHITE, 3);
+     txSetFillColor (TX_RED);
+     Win32::RoundRect(txDC(), x, y, x+w, y+h, 30, 30);
+     txSelectFont("Areal", 35);
+     txDrawText(x, y, x+w, y+h, text);
+    }
+
+  bool click()
+  {
+   return (txMouseX()>x && txMouseX()<x+w && txMouseY()>y && txMouseY()<y+h && txMouseButtons() == 1 && visible);
+}
+
+
+};
+
+//!GetAsyncKeyState(VK_ESCAPE)
+int main()
+{
+txCreateWindow (1370, 710);
+txTextCursor (false);
+
+
+
+
+string PAGE = "menu";
+
+
+
+
+Button btn1 = {10, 80, 220, 150, "ÈÃÐÀÒÜ", true};
+Button btn2 = {10, 530, 220, 150, "ÂÛÕÎÄ", true};
+Button btn3 = {10, 380, 220, 150, "Î ÈÃÐÅ", true};
+Button btn4 = {10, 230, 220, 150, "ÍÀÑÒÐÎÉÊÈ", true};
+
+   while(!btn2.click())
+    {
+     txClear();
+     txBegin();
+
+    if(PAGE == "menu")
+    {
+
+        btn1.draw();
+        btn2.draw();
+        btn3.draw();
+        btn4.draw();
+
+
+        btn1.visible = true;
+        btn2.visible = true;
+        btn3.visible = true;
+        btn4.visible = true;
+
+        if(btn1.click())
+        {
+         PAGE="ÈÃÐÀÒÜ";
+        btn1.visible = false;
+        btn2.visible = false;
+        btn3.visible = false;
+        btn4.visible = false;
+        }
+
+        if(btn3.click())
+        {
+         PAGE="Î ÈÃÐÅ";
+        btn1.visible = false;
+        btn2.visible = false;
+        btn3.visible = false;
+        btn4.visible = false;
+        }
+        if(btn4.click())
+        {
+         PAGE="ÍÀÑÒÐÎÉÊÈ";
+        btn1.visible = false;
+        btn2.visible = false;
+        btn3.visible = false;
+        btn4.visible = false;
+        }
+        txSetFillColor (TX_BLACK);
+        txSelectFont ("Arial", 40);
+        txSetColor(TX_YELLOW);
+        txTextOut(20, 30, "Mortal combat 2D edition");
+
+    }
+
+
+     if(PAGE == "ÍÀÑÒÐÎÉÊÈ")
+     {
+      txSetFillColor(TX_BLACK);
+      txSelectFont ("Arial", 35);
+      txTextOut(600, 20, "ÍÀÑÒÐÎÉÊÈ");
+      if(GetAsyncKeyState(VK_ESCAPE))
+      {
+       PAGE="menu";
+      }
+      txSetFillColor (TX_LIGHTBLUE);
+
+     }
+
+     if(PAGE == "Î ÈÃÐÅ")
+     {
+      txSetFillColor(TX_BLACK);
+      txSelectFont ("Arial", 35);
+      txTextOut(600, 20, "O ÈÃÐÅ");
+      if(GetAsyncKeyState(VK_ESCAPE))
+      {
+       PAGE="menu";
+      }
+      txSetFillColor (TX_LIGHTGREEN);
+     }
+
+     if(PAGE == "ÈÃÐÀÒÜ")
+     {
+      txSetFillColor(TX_BLACK);
+      txSelectFont ("Arial", 35);
+      txTextOut(600, 20, "ÇÀÃÐÓÇÊÀ...");
+      if(GetAsyncKeyState(VK_ESCAPE))
+      {
+       PAGE="menu";
+      }
+      txSetFillColor (TX_YELLOW);
+     }
+
+
+
+     txEnd();
+     txSleep(10);
+
+
+    }
+txDisableAutoPause();
+return 0;
+}
+
