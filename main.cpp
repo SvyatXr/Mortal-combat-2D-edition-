@@ -37,7 +37,7 @@ txTextCursor (false);
 
 string PAGE = "menu";
 
-
+HDC image_mario = txLoadImage("Images\\Ã‡ËÓ.bmp");
 
 
 Button btn1 = {10, 80, 220, 150, "»√–¿“‹", true};
@@ -47,11 +47,14 @@ Button btn4 = {10, 230, 220, 150, "Õ¿—“–Œ… »", true};
 
    while(!btn2.click())
     {
-     txClear();
      txBegin();
+     txClear();
+
 
     if(PAGE == "menu")
     {
+
+        txTransparentBlt(txDC(), 300, 110, 550, 600, image_mario, 0, 0);
 
         btn1.draw();
         btn2.draw();
@@ -91,7 +94,7 @@ Button btn4 = {10, 230, 220, 150, "Õ¿—“–Œ… »", true};
         }
         txSetFillColor (TX_BLACK);
         txSelectFont ("Arial", 40);
-        txSetColor(TX_YELLOW);
+        txSetColor(TX_WHITE);
         txTextOut(20, 30, "Mortal combat 2D edition");
 
     }
@@ -115,6 +118,7 @@ Button btn4 = {10, 230, 220, 150, "Õ¿—“–Œ… »", true};
       txSetFillColor(TX_BLACK);
       txSelectFont ("Arial", 35);
       txTextOut(600, 20, "O »√–≈");
+      txTextOut(200, 400, "—ÓÁ‰‡ÚÂÎ¸ ‰‡ÌÌÓÈ Ë„˚: ¬Ó‰Í‡ ‚ ÊÂÎÛ‰ÍÂ Ë —ÓÁ‰‡ÚÂÎ¸");
       if(GetAsyncKeyState(VK_ESCAPE))
       {
        PAGE="menu";
@@ -124,14 +128,14 @@ Button btn4 = {10, 230, 220, 150, "Õ¿—“–Œ… »", true};
 
      if(PAGE == "»√–¿“‹")
      {
-      txSetFillColor(TX_BLACK);
-      txSelectFont ("Arial", 35);
-      txTextOut(600, 20, "«¿√–”« ¿...");
-      if(GetAsyncKeyState(VK_ESCAPE))
-      {
-       PAGE="menu";
-      }
-      txSetFillColor (TX_YELLOW);
+          txSetFillColor(TX_BLACK);
+          txSelectFont ("Arial", 35);
+          txTextOut(600, 20, "«¿√–”« ¿...");
+          if(GetAsyncKeyState(VK_ESCAPE))
+          {
+            PAGE="menu";
+          }
+          txSetFillColor (TX_LIGHTGRAY);
      }
 
 
