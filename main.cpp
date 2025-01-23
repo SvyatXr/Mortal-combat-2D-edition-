@@ -26,35 +26,66 @@ struct Button
 
 };
 
+void drawProgressBar(int x)
+{
+    txSetColor(TX_BLUE);
+    txSetFillColor(TX_BLUE);
+    txCircle(x, 300, 20);
+}
+
 //!GetAsyncKeyState(VK_ESCAPE)
 int main()
 {
 txCreateWindow (1370, 710);
 txTextCursor (false);
 
-
-
-
 string PAGE = "menu";
 
 HDC image_mario = txLoadImage("Images\\Марио.bmp");
-
+int xProgressBar = 100;
 
 Button btn1 = {10, 80, 220, 150, "ИГРАТЬ", true};
 Button btn2 = {10, 530, 220, 150, "ВЫХОД", true};
 Button btn3 = {10, 380, 220, 150, "О ИГРЕ", true};
-Button btn4 = {10, 230, 220, 150, "НАСТРОЙКИ", true};
+Button btn4 = {10, 230, 220, 150, "ПРАВИЛА", true};
 
    while(!btn2.click())
     {
      txBegin();
      txClear();
-
+ //меню
 
     if(PAGE == "menu")
     {
+        txSetFillColor(TX_ORANGE);
+        txRectangle (340, 0, 820, 710);
+        txSetColor(TX_LIGHTBLUE);
+        txLine (360, 0, 360, 710);
+        txLine (380, 0, 380, 710);
+        txLine (400, 0, 400, 710);
+        txLine (420, 0, 420, 710);
+        txLine (440, 0, 440, 710);
+        txLine (460, 0, 460, 710);
+        txLine (480, 0, 480, 710);
+        txLine (500, 0, 500, 710);
+        txLine (520, 0, 520, 710);
+        txLine (540, 0, 540, 710);
+        txLine (560, 0, 560, 710);
+        txLine (580, 0, 580, 710);
+        txLine (600, 0, 600, 710);
+        txLine (620, 0, 620, 710);
+        txLine (640, 0, 640, 710);
+        txLine (660, 0, 660, 710);
+        txLine (680, 0, 680, 710);
+        txLine (700, 0, 700, 710);
+        txLine (720, 0, 720, 710);
+        txLine (740, 0, 740, 710);
+        txLine (760, 0, 760, 710);
+        txLine (780, 0, 780, 710);
+        txLine (800, 0, 800, 710);
 
-        txTransparentBlt(txDC(), 300, 110, 550, 600, image_mario, 0, 0);
+
+        txTransparentBlt(txDC(), 820, 110, 550, 600, image_mario, 0, 0);
 
         btn1.draw();
         btn2.draw();
@@ -86,7 +117,7 @@ Button btn4 = {10, 230, 220, 150, "НАСТРОЙКИ", true};
         }
         if(btn4.click())
         {
-         PAGE="НАСТРОЙКИ";
+         PAGE="ПРАВИЛА";
         btn1.visible = false;
         btn2.visible = false;
         btn3.visible = false;
@@ -95,16 +126,17 @@ Button btn4 = {10, 230, 220, 150, "НАСТРОЙКИ", true};
         txSetFillColor (TX_BLACK);
         txSelectFont ("Arial", 40);
         txSetColor(TX_WHITE);
-        txTextOut(20, 30, "Mortal combat 2D edition");
+        txTextOut(15, 30, "Mortal combat 2D edition");
 
     }
 
 
-     if(PAGE == "НАСТРОЙКИ")
+     if(PAGE == "ПРАВИЛА")
      {
       txSetFillColor(TX_BLACK);
       txSelectFont ("Arial", 35);
-      txTextOut(600, 20, "НАСТРОЙКИ");
+      txTextOut(600, 20, "ПРАВИЛА");
+      txTextOut(5, 100, "1.ИГРАТЬ БЕЗ ЧИТОВ.");
       if(GetAsyncKeyState(VK_ESCAPE))
       {
        PAGE="menu";
@@ -118,7 +150,9 @@ Button btn4 = {10, 230, 220, 150, "НАСТРОЙКИ", true};
       txSetFillColor(TX_BLACK);
       txSelectFont ("Arial", 35);
       txTextOut(600, 20, "O ИГРЕ");
-      txTextOut(200, 400, "Создатель данной игры: Водка в желудке и Создатель");
+      txTextOut(5, 50, "Создатель данной игры: Мёртвый анархист");
+      txTextOut(5, 100, "Данная игра не является плагиатом, а лишь идеи создателя");
+      txTextOut(5, 150, "Сделано в России");
       if(GetAsyncKeyState(VK_ESCAPE))
       {
        PAGE="menu";
@@ -128,14 +162,27 @@ Button btn4 = {10, 230, 220, 150, "НАСТРОЙКИ", true};
 
      if(PAGE == "ИГРАТЬ")
      {
+
           txSetFillColor(TX_BLACK);
           txSelectFont ("Arial", 35);
           txTextOut(600, 20, "ЗАГРУЗКА...");
+
           if(GetAsyncKeyState(VK_ESCAPE))
           {
             PAGE="menu";
           }
+
+        while( xProgressBar<1000)
+        {
+          drawProgressBar(xProgressBar);
+          xProgressBar+=5;
+          txSleep(10);
+        }
+
+
+
           txSetFillColor (TX_LIGHTGRAY);
+
      }
 
 
