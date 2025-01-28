@@ -26,11 +26,58 @@ struct Button
 
 };
 
+struct Mario
+{
+    int x;
+    int y;
+    int w;
+    int h;
+    HDC image;
+
+   void draw()
+   {
+        txTransparentBlt(txDC(), x, y, w, h, image, 0, 0, TX_WHITE);
+       Mario mario = { 100, 250, 100, 80, txLoadImage("M‡ËÌ‡_2.bmp"), txLoadImage("M‡ËÌ‡_2.bmp")};
+   }
+   while (!GetAsyncKeyState(VK_ESCAPE))
+   {
+    txClear();
+    txBegin();
+
+    mario.draw();
+
+    if (GetAsyncKeyState(VK_RIGHT))
+    {
+     mario.x += 5;
+    }
+
+    if (GetAsyncKeyState(VK_SPACE))
+    {
+      mario.image = mario.image_jump;
+      mario.y -= 20;
+    }
+
+    mario.y += 5;
+
+    if(mario.y > 400)
+    {
+     mario.y = 400;
+    }
+
+    txEnd();
+    txSleep(30);
+   }
+
+
+};
+
+
+
 void drawProgressBar(int x)
 {
     txSetColor(TX_BLUE);
     txSetFillColor(TX_BLUE);
-    txCircle(x, 300, 20);
+    txCircle(x, 300, 50);
 }
 
 //!GetAsyncKeyState(VK_ESCAPE)
@@ -42,6 +89,7 @@ txTextCursor (false);
 string PAGE = "menu";
 
 HDC image_mario = txLoadImage("Images\\Ã‡ËÓ.bmp");
+HDC image_AJY = txLoadImage("Images\\‘ÓÌ Ë„‡.bmp");
 int xProgressBar = 100;
 
 Button btn1 = {10, 80, 220, 150, "»√–¿“‹", true};
@@ -57,6 +105,7 @@ Button btn4 = {10, 230, 220, 150, "œ–¿¬»À¿", true};
 
     if(PAGE == "menu")
     {
+        xProgressBar=100;
         txSetFillColor(TX_ORANGE);
         txRectangle (340, 0, 820, 710);
         txSetColor(TX_LIGHTBLUE);
@@ -137,6 +186,7 @@ Button btn4 = {10, 230, 220, 150, "œ–¿¬»À¿", true};
       txSelectFont ("Arial", 35);
       txTextOut(600, 20, "œ–¿¬»À¿");
       txTextOut(5, 100, "1.»√–¿“‹ ¡≈« ◊»“Œ¬.");
+      txTextOut(5, 150, "2.¬Œ ¬–≈Ãﬂ »√–€ Õ≈ Ã≈ÿ¿“‹ œ–Œ“»¬Õ» ” “¿œ “¿œ¿“‹ œŒ  ÕŒœŒ◊ ¿Ã ÕŒ”“¡” ¿.");
       if(GetAsyncKeyState(VK_ESCAPE))
       {
        PAGE="menu";
@@ -163,6 +213,8 @@ Button btn4 = {10, 230, 220, 150, "œ–¿¬»À¿", true};
      if(PAGE == "»√–¿“‹")
      {
 
+          txSetFillColor (TX_LIGHTGRAY);
+          txClear();
           txSetFillColor(TX_BLACK);
           txSelectFont ("Arial", 35);
           txTextOut(600, 20, "«¿√–”« ¿...");
@@ -172,16 +224,20 @@ Button btn4 = {10, 230, 220, 150, "œ–¿¬»À¿", true};
             PAGE="menu";
           }
 
-        while( xProgressBar<1000)
-        {
-          drawProgressBar(xProgressBar);
-          xProgressBar+=5;
-          txSleep(10);
-        }
-
-
-
           txSetFillColor (TX_LIGHTGRAY);
+
+          while(xProgressBar<1170)
+          {
+              drawProgressBar(xProgressBar);
+              xProgressBar+=5;
+              txSleep(10);
+          }
+
+     //»„‡
+
+        txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
+
+        //Color (TX_LIGHTGRAY);
 
      }
 
