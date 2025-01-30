@@ -36,42 +36,8 @@ struct Mario
 
    void draw()
    {
-        txTransparentBlt(txDC(), x, y, w, h, image, 0, 0, TX_WHITE);
-       Mario mario = { 100, 250, 100, 80, txLoadImage("Màðèíà_2.bmp"), txLoadImage("Màðèíà_2.bmp")};
-}
-    while (!GetAsyncKeyState(VK_ESCAPE))
-   {
-    txClear();
-    txBegin();
-
-    mario.draw();
-
-    if (GetAsyncKeyState(VK_RIGHT))
-    {
-     mario.x += 5;
-    }
-
-    if (GetAsyncKeyState(VK_SPACE))
-    {
-      mario.image = mario.image_jump;
-      mario.y -= 20;
-    }
-
-    mario.y += 5;
-
-    if(mario.y > 400)
-    {
-     mario.y = 400;
-    }
-
-
-
-
-    txEnd();
-    txSleep(30);
+        txTransparentBlt(txDC(), x, y, w, h, image, 0, 0, TX_WHITE);       
    }
-
-
 };
 
 
@@ -99,6 +65,9 @@ Button btn1 = {10, 80, 220, 150, "ÈÃÐÀÒÜ", true};
 Button btn2 = {10, 530, 220, 150, "ÂÛÕÎÄ", true};
 Button btn3 = {10, 380, 220, 150, "Î ÈÃÐÅ", true};
 Button btn4 = {10, 230, 220, 150, "ÏÐÀÂÈËÀ", true};
+
+Mario mario = { 100, 250, 100, 80, txLoadImage("Màðèíà_2.bmp"), txLoadImage("Màðèíà_2.bmp")};
+
 
    while(!btn2.click())
     {
@@ -238,10 +207,29 @@ Button btn4 = {10, 230, 220, 150, "ÏÐÀÂÈËÀ", true};
 
      //Èãðà
 
-        txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
+            txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
 
-        //Color (TX_LIGHTGRAY);
+           
+            mario.draw();
 
+            if (GetAsyncKeyState(VK_RIGHT))
+            {
+             mario.x += 5;
+            }
+
+            if (GetAsyncKeyState(VK_SPACE))
+            {
+              mario.image = mario.image_jump;
+              mario.y -= 20;
+            }
+
+            mario.y += 5;
+
+            if(mario.y > 400)
+            {
+             mario.y = 400;
+            }
+ //Color (TX_LIGHTGRAY);
      }
 
 
