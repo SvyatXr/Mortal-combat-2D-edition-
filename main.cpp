@@ -32,12 +32,15 @@ struct Mario
     int y;
     int w;
     int h;
+    HDC stop;
+    HDC run;
+    HDC jump;
     HDC image;
-    HDC image_jump;
+    int n_cadr;
 
    void draw()
    {
-        txTransparentBlt(txDC(), x, y, w, h, image, 0, 0, TX_WHITE);
+        txTransparentBlt(txDC(), x, y, w, h, image, n_cadr*100, 0, TX_WHITE);
    }
 };
 
@@ -67,7 +70,13 @@ Button btn2 = {10, 530, 220, 150, "ÂÛÕÎÄ", true};
 Button btn3 = {10, 380, 220, 150, "Î ÈÃÐÅ", true};
 Button btn4 = {10, 230, 220, 150, "ÏÐÀÂÈËÀ", true};
 
-Mario mario = { 10, 690, 82, 299, txLoadImage("Images/Màðèíà_2.bmp"), txLoadImage("Images/Màðèíà_2.bmp")};
+int n_cadr = 0;
+
+Mario mario = { 0, 500, 100, 108,
+                txLoadImage("Images/left_stop.bmp"),
+                txLoadImage("Images/left_run.bmp"),
+                txLoadImage("Images/left_jump.bmp"),
+                txLoadImage("Images/left_stop.bmp"), 0};
 
 
    while(!btn2.click())
@@ -212,10 +221,16 @@ Mario mario = { 10, 690, 82, 299, txLoadImage("Images/Màðèíà_2.bmp"), txLoadImag
 
 
             mario.draw();
+            mario.image = mario.stop;
+
 
             if (GetAsyncKeyState(VK_RIGHT))
             {
-             mario.x += 20;
+                mario.x += 20;
+                mario.image = mario.run;
+                txSleep(50);
+                mario.n_cadr+=1;
+                if(mario.n_cadr>1) mario.n_cadr=0;
             }
 
             if (GetAsyncKeyState(VK_LEFT))
@@ -225,15 +240,15 @@ Mario mario = { 10, 690, 82, 299, txLoadImage("Images/Màðèíà_2.bmp"), txLoadImag
 
             if (GetAsyncKeyState(VK_SPACE))
             {
-              mario.image = mario.image_jump;
+              mario.image = mario.jump;
               mario.y -= 40;
             }
 
             mario.y += 10;
 
-            if(mario.y > 630)
+            if(mario.y > 602)
             {
-             mario.y = 630;
+             mario.y = 602;
             }
  //Color (TX_LIGHTGRAY);
      }
