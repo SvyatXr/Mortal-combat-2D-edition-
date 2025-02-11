@@ -72,11 +72,13 @@ Button btn4 = {10, 230, 220, 150, "ÏÐÀÂÈËÀ", true};
 
 int n_cadr = 0;
 
-Mario mario = { 0, 500, 100, 108,
+Mario mario = { 100, 500, 100, 108,
                 txLoadImage("Images/left_stop.bmp"),
                 txLoadImage("Images/left_run.bmp"),
                 txLoadImage("Images/left_jump.bmp"),
                 txLoadImage("Images/left_stop.bmp"), 0};
+
+
 
 
    while(!btn2.click())
@@ -224,7 +226,7 @@ Mario mario = { 0, 500, 100, 108,
             mario.image = mario.stop;
 
 
-            if (GetAsyncKeyState(VK_RIGHT))
+            if (GetAsyncKeyState('D'))
             {
                 mario.x += 20;
                 mario.image = mario.run;
@@ -233,12 +235,12 @@ Mario mario = { 0, 500, 100, 108,
                 if(mario.n_cadr>1) mario.n_cadr=0;
             }
 
-            if (GetAsyncKeyState(VK_LEFT))
+            if (GetAsyncKeyState('A'))
             {
              mario.x -= 20;
             }
 
-            if (GetAsyncKeyState(VK_SPACE))
+            if (GetAsyncKeyState('S'))
             {
               mario.image = mario.jump;
               mario.y -= 40;
@@ -250,11 +252,25 @@ Mario mario = { 0, 500, 100, 108,
             {
              mario.y = 602;
             }
- //Color (TX_LIGHTGRAY);
-     }
+
+            if(mario.y < 0)
+            {
+             mario.y = 0;
+            }
+
+            if (mario.x  > 1370-mario.w)
+             {
+              mario.x = 1370-mario.w;
+             }
+            if (mario.x < 0)
+             {
+              mario.x = 0;
+             }
 
 
 
+
+      }
      txEnd();
      txSleep(10);
 
