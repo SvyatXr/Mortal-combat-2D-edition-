@@ -35,6 +35,7 @@ struct Mario
     HDC stop;
     HDC run;
     HDC jump;
+    HDC hit;
     HDC image;
     int n_cadr;
 
@@ -76,6 +77,7 @@ Mario mario = { 100, 500, 100, 108,
                 txLoadImage("Images/left_stop.bmp"),
                 txLoadImage("Images/left_run.bmp"),
                 txLoadImage("Images/left_jump.bmp"),
+                txLoadImage("Images/mario_hit.bmp"),
                 txLoadImage("Images/left_stop.bmp"), 0};
 
 
@@ -245,6 +247,17 @@ Mario mario = { 100, 500, 100, 108,
               mario.image = mario.jump;
               mario.y -= 40;
             }
+
+            if (GetAsyncKeyState('W'))
+            {
+             mario.image = mario.hit;
+             txSleep(50);
+             mario.n_cadr+=1;
+             if(mario.n_cadr>1) mario.n_cadr=0;
+            }
+
+
+
 
             mario.y += 10;
 
