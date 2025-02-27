@@ -77,9 +77,16 @@ Mario mario = { 100, 500, 100, 108,
                 txLoadImage("Images/left_stop.bmp"),
                 txLoadImage("Images/left_run.bmp"),
                 txLoadImage("Images/left_jump.bmp"),
-                txLoadImage("Images/mario_hit.bmp"),
+                txLoadImage("Images/left_hit.bmp"),
                 txLoadImage("Images/left_stop.bmp"), 0};
 
+
+Mario mario1 = { 100, 500, 100, 108,
+                txLoadImage("Images/right_stop.bmp"),
+                txLoadImage("Images/right_run.bmp"),
+                txLoadImage("Images/right_jump.bmp"),
+                txLoadImage("Images/right_hit.bmp"),
+                txLoadImage("Images/right_stop.bmp"), 0};
 
 
 
@@ -235,17 +242,20 @@ Mario mario = { 100, 500, 100, 108,
                 txSleep(50);
                 mario.n_cadr+=1;
                 if(mario.n_cadr>1) mario.n_cadr=0;
+
             }
 
             if (GetAsyncKeyState('A'))
             {
              mario.x -= 20;
+
             }
 
             if (GetAsyncKeyState('S'))
             {
               mario.image = mario.jump;
               mario.y -= 40;
+
             }
 
             if (GetAsyncKeyState('W'))
@@ -254,6 +264,7 @@ Mario mario = { 100, 500, 100, 108,
              txSleep(50);
              mario.n_cadr+=1;
              if(mario.n_cadr>1) mario.n_cadr=0;
+
             }
 
 
@@ -280,6 +291,63 @@ Mario mario = { 100, 500, 100, 108,
               mario.x = 0;
              }
 
+
+
+            mario1.draw();
+            mario1.image = mario1.stop;
+
+
+            if (GetAsyncKeyState(VK_RIGHT))
+            {
+                mario1.x += 20;
+                mario1.image = mario1.run;
+                txSleep(50);
+                mario1.n_cadr+=1;
+                if(mario1.n_cadr>1) mario1.n_cadr=0;
+            }
+
+            if (GetAsyncKeyState(VK_LEFT))
+            {
+             mario.x -= 20;
+            }
+
+            if (GetAsyncKeyState(VK_DOWN))
+            {
+              mario1.image = mario1.jump;
+              mario1.y -= 40;
+            }
+
+            if (GetAsyncKeyState(VK_UP))
+            {
+             mario1.image = mario1.hit;
+             txSleep(50);
+             mario1.n_cadr+=1;
+             if(mario1.n_cadr>1) mario1.n_cadr=0;
+            }
+
+
+
+
+            mario1.y += 10;
+
+            if(mario1.y > 602)
+            {
+             mario1.y = 602;
+            }
+
+            if(mario1.y < 0)
+            {
+             mario1.y = 0;
+            }
+
+            if (mario1.x  > 1370-mario1.w)
+             {
+              mario1.x = 1370-mario1.w;
+             }
+            if (mario1.x < 0)
+             {
+              mario1.x = 0;
+             }
 
 
 
