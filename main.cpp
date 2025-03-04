@@ -81,7 +81,7 @@ Mario mario = { 100, 500, 100, 108,
                 txLoadImage("Images/left_stop.bmp"), 0};
 
 
-Mario mario1 = { 100, 500, 100, 108,
+Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_stop.bmp"),
                 txLoadImage("Images/right_run.bmp"),
                 txLoadImage("Images/right_jump.bmp"),
@@ -180,6 +180,8 @@ Mario mario1 = { 100, 500, 100, 108,
       txTextOut(600, 20, "ПРАВИЛА");
       txTextOut(5, 100, "1.ИГРАТЬ БЕЗ ЧИТОВ.");
       txTextOut(5, 150, "2.ВО ВРЕМЯ ИГРЫ НЕ МЕШАТЬ ПРОТИВНИКУ ТАП ТАПАТЬ ПО КНОПОЧКАМ НОУТБУКА.");
+      txTextOut(5, 200, "3.ИГРАТЬ БЕЗ НЕГАТИВА.");
+
       if(GetAsyncKeyState(VK_ESCAPE))
       {
        PAGE="menu";
@@ -191,11 +193,17 @@ Mario mario1 = { 100, 500, 100, 108,
      if(PAGE == "О ИГРЕ")
      {
       txSetFillColor(TX_BLACK);
-      txSelectFont ("Arial", 35);
+      txSelectFont ("Arial", 40);
+      txTextOut(5, 50, "СЮЖЕТ");
+      txTextOut(5, 100, "Два марио подрались из-за найденной ими сосиской и началась ожесточённая битва за сосиску!");
+      txSelectFont ("Arial", 50);
       txTextOut(600, 20, "O ИГРЕ");
-      txTextOut(5, 50, "Создатель данной игры: Мёртвый анархист");
-      txTextOut(5, 100, "Данная игра не является плагиатом, а лишь идеи создателя");
-      txTextOut(5, 150, "Сделано в России");
+      txSelectFont ("Arial", 35);
+      txTextOut(5, 150, "Создатель данной игры: <?|?|?|?|?|?|?|?|?|?|?|?|?|?|?|?|?|?|?|?|?>");
+      txSelectFont ("Arial", 35);
+      txTextOut(5, 200, "Данная игра не является плагиатом, а лишь идеей создателя");
+      txSelectFont ("Arial", 35);
+      txTextOut(5, 250, "Сделано в России");
       if(GetAsyncKeyState(VK_ESCAPE))
       {
        PAGE="menu";
@@ -219,7 +227,7 @@ Mario mario1 = { 100, 500, 100, 108,
 
           txSetFillColor (TX_LIGHTGRAY);
 
-          while(xProgressBar<1170)
+          while(xProgressBar<1270)
           {
               drawProgressBar(xProgressBar);
               xProgressBar+=5;
@@ -300,15 +308,16 @@ Mario mario1 = { 100, 500, 100, 108,
             if (GetAsyncKeyState(VK_RIGHT))
             {
                 mario1.x += 20;
-                mario1.image = mario1.run;
-                txSleep(50);
-                mario1.n_cadr+=1;
-                if(mario1.n_cadr>1) mario1.n_cadr=0;
             }
 
             if (GetAsyncKeyState(VK_LEFT))
             {
-             mario.x -= 20;
+                mario1.x -= 20;
+                mario1.image = mario1.run;
+                txSleep(50);
+                mario1.n_cadr+=1;
+                if(mario1.n_cadr>1) mario1.n_cadr=0;
+
             }
 
             if (GetAsyncKeyState(VK_DOWN))
