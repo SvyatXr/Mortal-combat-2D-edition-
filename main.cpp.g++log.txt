@@ -1,11 +1,14 @@
-C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (1)\Mortal-combat-2D-edition--main\main.cpp: In function 'void drawProgressBar(int)':
-C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (1)\Mortal-combat-2D-edition--main\main.cpp:50:6: warning: no previous declaration for 'void drawProgressBar(int)' [-Wmissing-declarations]
+C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main\main.cpp: In function 'void drawProgressBar(int)':
+C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main\main.cpp:51:6: warning: no previous declaration for 'void drawProgressBar(int)' [-Wmissing-declarations]
  void drawProgressBar(int x)
       ^
-C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (1)\Mortal-combat-2D-edition--main\main.cpp: In function 'int main()':
-C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (1)\Mortal-combat-2D-edition--main\main.cpp:74:5: warning: unused variable 'n_cadr' [-Wunused-variable]
+C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main\main.cpp: In function 'int main()':
+C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main\main.cpp:68:5: warning: variable 'xProgressBar' set but not used [-Wunused-but-set-variable]
+ int xProgressBar = 100;
+     ^
+C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main\main.cpp:75:5: warning: unused variable 'n_cadr' [-Wunused-variable]
  int n_cadr = 0;
      ^
 ---------------------------------------------------------------------------------------------
-[27.02.2025  9:07:52,64 C:\Users\2023@DESKTOP08, returned 0]
-C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (1)\Mortal-combat-2D-edition--main>g++.exe "C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (1)\Mortal-combat-2D-edition--main\main.cpp" -o "bin\Release\Mortal combat 2D edition.exe" -mwindows  -Wall -fexceptions  -O2  -Wall -Wextra -Weffc++ -Wcast-align -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-security -Wformat=2 -Wignored-qualifiers -Winit-self -Winline -Wlogical-op -Wmain -Wmissing-declarations -Wno-missing-field-initializers -Wmissing-include-dirs -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wredundant-decls -Wshadow -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wswitch-default -Wswitch-enum -Wtype-limits -Wundef -Wunreachable-code -Wwrite-strings -fexceptions -g -pipe -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC   -s
+[06.03.2025  9:34:32,68 C:\Users\2023@DESKTOP08, returned 0]
+C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main>g++.exe -Wall -fexceptions  -O2  -Wall -Wextra -Weffc++ -Wcast-align -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-security -Wformat=2 -Wignored-qualifiers -Winit-self -Winline -Wlogical-op -Wmain -Wmissing-declarations -Wno-missing-field-initializers -Wmissing-include-dirs -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wredundant-decls -Wshadow -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wswitch-default -Wswitch-enum -Wtype-limits -Wundef -Wunreachable-code -Wwrite-strings -fexceptions -g -pipe -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC    -c "C:\Users\2023\Downloads\Mortal-combat-2D-edition--main (2)\Mortal-combat-2D-edition--main\main.cpp" -o obj\Release\main.o

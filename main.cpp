@@ -38,6 +38,7 @@ struct Mario
     HDC hit;
     HDC image;
     int n_cadr;
+    int healthy;
 
    void draw()
    {
@@ -78,7 +79,7 @@ Mario mario = { 100, 500, 100, 108,
                 txLoadImage("Images/left_run.bmp"),
                 txLoadImage("Images/left_jump.bmp"),
                 txLoadImage("Images/left_hit.bmp"),
-                txLoadImage("Images/left_stop.bmp"), 0};
+                txLoadImage("Images/left_stop.bmp"), 0, 400};
 
 
 Mario mario1 = { 1170, 500, 100, 108,
@@ -86,7 +87,7 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_run.bmp"),
                 txLoadImage("Images/right_jump.bmp"),
                 txLoadImage("Images/right_hit.bmp"),
-                txLoadImage("Images/right_stop.bmp"), 0};
+                txLoadImage("Images/right_stop.bmp"), 0, 400};
 
 
 
@@ -213,17 +214,17 @@ Mario mario1 = { 1170, 500, 100, 108,
 
      if(PAGE == "ÈÃÐÀÒÜ")
      {
-
+          if(GetAsyncKeyState(VK_ESCAPE))
+          {
+            PAGE="menu";
+          }
+          /*
           txSetFillColor (TX_LIGHTGRAY);
           txClear();
           txSetFillColor(TX_BLACK);
           txSelectFont ("Arial", 35);
           txTextOut(600, 20, "ÇÀÃÐÓÇÊÀ...");
 
-          if(GetAsyncKeyState(VK_ESCAPE))
-          {
-            PAGE="menu";
-          }
 
           txSetFillColor (TX_LIGHTGRAY);
 
@@ -232,7 +233,7 @@ Mario mario1 = { 1170, 500, 100, 108,
               drawProgressBar(xProgressBar);
               xProgressBar+=5;
               txSleep(10);
-          }
+          } */
 
      //Èãðà
 
@@ -241,6 +242,24 @@ Mario mario1 = { 1170, 500, 100, 108,
 
             mario.draw();
             mario.image = mario.stop;
+            mario1.draw();
+            mario1.image = mario1.stop;
+
+            txSetColor (TX_WHITE, 5);
+            txSetFillColor(TX_BLACK);
+            txRectangle (50, 50, 450, 75);
+            txSetColor (TX_WHITE, 0);
+            txSetFillColor(TX_ORANGE);
+            txRectangle (50, 50, 50+mario.healthy, 75);
+
+
+            txSetColor (TX_WHITE, 5);
+            txSetFillColor(TX_BLACK);
+            txRectangle (870, 50, 870+400, 75);
+            txSetColor (TX_WHITE, 0);
+            txSetFillColor(TX_ORANGE);
+            txRectangle (870, 50, 870+mario1.healthy, 75);
+
 
 
             if (GetAsyncKeyState('D'))
@@ -268,10 +287,15 @@ Mario mario1 = { 1170, 500, 100, 108,
 
             if (GetAsyncKeyState('W'))
             {
-             mario.image = mario.hit;
-             txSleep(50);
-             mario.n_cadr+=1;
-             if(mario.n_cadr>1) mario.n_cadr=0;
+                 mario.image = mario.hit;
+                 txSleep(50);
+                 mario.n_cadr+=1;
+                 if(mario.n_cadr>1) mario.n_cadr=0;
+            }
+
+            if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x)
+            {
+                mario1.healthy -= 10;
 
             }
 
@@ -301,8 +325,6 @@ Mario mario1 = { 1170, 500, 100, 108,
 
 
 
-            mario1.draw();
-            mario1.image = mario1.stop;
 
 
             if (GetAsyncKeyState(VK_RIGHT))
@@ -332,9 +354,15 @@ Mario mario1 = { 1170, 500, 100, 108,
              txSleep(50);
              mario1.n_cadr+=1;
              if(mario1.n_cadr>1) mario1.n_cadr=0;
+
             }
 
 
+            if(mario1.image == mario1.hit && mario1.x+mario1.w<mario.x && mario1.x>mario.x)
+            {
+                mario.healthy -= 10;
+
+            }
 
 
             mario1.y += 10;
