@@ -79,7 +79,7 @@ Mario mario = { 100, 500, 100, 108,
                 txLoadImage("Images/left_run.bmp"),
                 txLoadImage("Images/left_jump.bmp"),
                 txLoadImage("Images/left_hit.bmp"),
-                txLoadImage("Images/left_stop.bmp"), 0, 450};
+                txLoadImage("Images/left_stop.bmp"), 0, 400};
 
 
 Mario mario1 = { 1170, 500, 100, 108,
@@ -87,7 +87,7 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_run.bmp"),
                 txLoadImage("Images/right_jump.bmp"),
                 txLoadImage("Images/right_hit.bmp"),
-                txLoadImage("Images/right_stop.bmp"), 0, 450};
+                txLoadImage("Images/right_stop.bmp"), 0, 400};
 
 
 
@@ -100,6 +100,8 @@ Mario mario1 = { 1170, 500, 100, 108,
     if(PAGE == "menu")
     {
         xProgressBar=100;
+        mario.healthy=400;
+        mario1.healthy=400;
         txSetFillColor(TX_ORANGE);
         txRectangle (340, 0, 820, 710);
         txSetColor(TX_LIGHTBLUE);
@@ -218,7 +220,7 @@ Mario mario1 = { 1170, 500, 100, 108,
           {
             PAGE="menu";
           }
-          /*
+
           txSetFillColor (TX_LIGHTGRAY);
           txClear();
           txSetFillColor(TX_BLACK);
@@ -233,7 +235,7 @@ Mario mario1 = { 1170, 500, 100, 108,
               drawProgressBar(xProgressBar);
               xProgressBar+=5;
               txSleep(10);
-          } */
+          }
 
      //Игра
 
@@ -249,8 +251,16 @@ Mario mario1 = { 1170, 500, 100, 108,
             txSetFillColor(TX_BLACK);
             txRectangle (50, 50, 450, 75);
             txSetColor (TX_WHITE, 0);
-            txSetFillColor(TX_GREEN);
-            txRectangle (50, 50, mario.healthy, 75);
+            txSetFillColor(TX_ORANGE);
+            txRectangle (50, 50, 50+mario.healthy, 75);
+
+
+            txSetColor (TX_WHITE, 5);
+            txSetFillColor(TX_BLACK);
+            txRectangle (870, 50, 870+400, 75);
+            txSetColor (TX_WHITE, 0);
+            txSetFillColor(TX_ORANGE);
+            txRectangle (870, 50, 870+mario1.healthy, 75);
 
 
 
@@ -285,9 +295,9 @@ Mario mario1 = { 1170, 500, 100, 108,
                  if(mario.n_cadr>1) mario.n_cadr=0;
             }
 
-            if(mario.image == mario.hit && mario.x+mario.w>mario1.x)
+            if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x)
             {
-                mario.healthy -= 10;
+                mario1.healthy -= 10;
 
             }
 
@@ -346,11 +356,11 @@ Mario mario1 = { 1170, 500, 100, 108,
              txSleep(50);
              mario1.n_cadr+=1;
              if(mario1.n_cadr>1) mario1.n_cadr=0;
-
             }
-
-
-
+              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x )
+            {
+                mario.healthy -= 10;
+            }
 
             mario1.y += 10;
 
@@ -373,7 +383,10 @@ Mario mario1 = { 1170, 500, 100, 108,
               mario1.x = 0;
              }
 
-
+             if(mario.healthy<10 || mario1.healthy<10)
+             {
+                PAGE = "menu";
+             }
 
       }
      txEnd();
