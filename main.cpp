@@ -295,7 +295,7 @@ Mario mario1 = { 1170, 500, 100, 108,
                  if(mario.n_cadr>1) mario.n_cadr=0;
             }
 
-            if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x)
+            if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x && mario.y>mario1.y+mario1.h && mario.y<mario1.y+mario1.h)
             {
                 mario1.healthy -= 10;
 
@@ -357,7 +357,7 @@ Mario mario1 = { 1170, 500, 100, 108,
              mario1.n_cadr+=1;
              if(mario1.n_cadr>1) mario1.n_cadr=0;
             }
-              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x)
+              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x && mario1.y<mario.y+mario.h && mario1.y>mario.y-mario.h)
             {
                 mario.healthy -= 10;
             }
@@ -385,8 +385,35 @@ Mario mario1 = { 1170, 500, 100, 108,
 
              if(mario.healthy<10 || mario1.healthy<10)
              {
-                PAGE = "menu";
+               PAGE = "КОНЕЦ";
              }
+
+
+      }
+
+      if(PAGE == "КОНЕЦ")
+      {
+          if(GetAsyncKeyState(VK_ESCAPE))
+          {
+            PAGE="menu";
+          }
+
+           txSetFillColor (TX_LIGHTGREEN);
+           txClear();
+           txBegin();
+           txSetFillColor(TX_BLACK);
+           txSelectFont ("Arial", 35);
+           if(mario.healthy<10)
+             {
+                txTextOut(540, 300, "Mario1 победил Mario!");
+             }
+             else if(mario1.healthy<10)
+             {
+                txTextOut(540, 300, "Mario победил Mario1!");
+             }
+           txTextOut(540, 350, "Для выхода нажмите Esc");
+
+
 
       }
      txEnd();

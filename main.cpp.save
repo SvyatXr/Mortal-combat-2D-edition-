@@ -357,7 +357,7 @@ Mario mario1 = { 1170, 500, 100, 108,
              mario1.n_cadr+=1;
              if(mario1.n_cadr>1) mario1.n_cadr=0;
             }
-              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x )
+              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x)
             {
                 mario.healthy -= 10;
             }
@@ -383,11 +383,33 @@ Mario mario1 = { 1170, 500, 100, 108,
               mario1.x = 0;
              }
 
-             if(mario.healthy<10 || mario1.healthy<10)
+             if(mario.healthy<10)
              {
-                PAGE = "menu";
+               txSetFillColor (TX_LIGHTGREEN);
+               txClear();
+               txBegin();
+               txSetFillColor(TX_BLACK);
+               txSelectFont ("Arial", 35);
+               txTextOut(540, 300, "Mario1 победил Mario!");
+               txTextOut(540, 350, "Для выхода нажмите Esc");
              }
 
+             if(mario1.healthy<10)
+             {
+
+               txSetFillColor (TX_LIGHTGREEN);
+               txClear();
+               txBegin();
+               txSetFillColor(TX_BLACK);
+               txSelectFont ("Arial", 35);
+               txTextOut(540, 300, "Mario победил Mario1!");
+               txTextOut(540, 350, "Для выхода нажмите Esc");
+             }
+      }
+      
+      if(PAGE == "КОНЕ")
+      {
+     
       }
      txEnd();
      txSleep(10);
