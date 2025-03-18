@@ -238,6 +238,7 @@ Mario mario1 = { 1170, 500, 100, 108,
           }
 
      //Игра
+            txPlaySound ("Rammstein - Du hast.wav");
 
             txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
 
@@ -295,7 +296,7 @@ Mario mario1 = { 1170, 500, 100, 108,
                  if(mario.n_cadr>1) mario.n_cadr=0;
             }
 
-            if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x && mario.y>mario1.y+mario1.h && mario.y<mario1.y+mario1.h)
+            if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x && mario.y<mario1.y+mario1.h && mario.y+mario.h>mario1.y)
             {
                 mario1.healthy -= 10;
 
@@ -357,7 +358,7 @@ Mario mario1 = { 1170, 500, 100, 108,
              mario1.n_cadr+=1;
              if(mario1.n_cadr>1) mario1.n_cadr=0;
             }
-              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x && mario1.y<mario.y+mario.h && mario1.y>mario.y-mario.h)
+              if(mario1.image == mario1.hit && mario1.x<mario.x+mario.w && mario1.x>mario.x && mario1.y<mario.y+mario.h && mario1.y+mario1.h>mario.y)
             {
                 mario.healthy -= 10;
             }
