@@ -89,7 +89,7 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_hit.bmp"),
                 txLoadImage("Images/right_stop.bmp"), 0, 400};
 
-
+bool sound = true;
 
    while(!btn2.click())
     {
@@ -238,7 +238,7 @@ Mario mario1 = { 1170, 500, 100, 108,
           }
 
      //Игра
-            txPlaySound ("Rammstein - Du hast.wav");
+
 
             txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
 
@@ -263,7 +263,11 @@ Mario mario1 = { 1170, 500, 100, 108,
             txSetFillColor(TX_ORANGE);
             txRectangle (870, 50, 870+mario1.healthy, 75);
 
-
+            if(sound)
+            {
+                txPlaySound ("fite.wav");
+                sound=false;
+            }
 
             if (GetAsyncKeyState('D'))
             {
