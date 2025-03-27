@@ -99,6 +99,8 @@ bool sound = true;
 
     if(PAGE == "menu")
     {
+        txPlaySound (NULL);
+        sound = true;
         xProgressBar=100;
         mario.healthy=400;
         mario1.healthy=400;
@@ -154,7 +156,7 @@ bool sound = true;
 
         if(btn3.click())
         {
-         PAGE="н хцпе";
+         PAGE="на хцпе";
         btn1.visible = false;
         btn2.visible = false;
         btn3.visible = false;
@@ -179,11 +181,24 @@ bool sound = true;
      if(PAGE == "опюбхкю")
      {
       txSetFillColor(TX_BLACK);
-      txSelectFont ("Arial", 35);
-      txTextOut(600, 20, "опюбхкю");
-      txTextOut(5, 100, "1.хцпюрэ аег вхрнб.");
-      txTextOut(5, 150, "2.бн бпелъ хцпш ме леьюрэ опнрхбмхйс рюо рюоюрэ он ймнонвйюл мнсрасйю.");
-      txTextOut(5, 200, "3.хцпюрэ аег мецюрхбю.");
+      txSelectFont ("Arial", 33);
+      txDrawText   (100, 0, 1270, 100, "опюбхкю");
+
+      txTextOut(25, 100, "1.хцпюрэ аег вхрнб.");
+      txTextOut(25, 135, "2.бн бпелъ хцпш ме леьюрэ опнрхбмхйс рюо рюоюрэ он ймнонвйюл мнсрасйю.");
+      txTextOut(25, 170, "3.хцпюрэ аег мецюрхбю.");
+      txTextOut(25, 205, "хцпю гюйюмвхбюеряъ оняке рнцн, йюй ндхм люпхн онаефдюер дпсцнцн.");
+
+      txDrawText   (100, 250, 1270, 700, "сопюбкемхе дкъ кебнцн люпхн: \n"
+                                         "A-бкебн \n"
+                                         "D-бопюбн \n"
+                                         "S-ббепу \n"
+                                         "W-сдюп \n"
+                                         "сопюбкемхе дкъ опюбнцн люпхн: \n"
+                                         "ярпекйю бкебн-бкебн \n"
+                                         "ярпекйю бопюбн-бопюбн \n"
+                                         "ярпекйю бмхг-ббепу \n"
+                                         "ярпекйю ббепу-сдюп \n");
 
       if(GetAsyncKeyState(VK_ESCAPE))
       {
@@ -227,7 +242,6 @@ bool sound = true;
           txSelectFont ("Arial", 35);
           txTextOut(600, 20, "гюцпсгйю...");
 
-
           txSetFillColor (TX_LIGHTGRAY);
 
           while(xProgressBar<1270)
@@ -241,7 +255,6 @@ bool sound = true;
 
 
             txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
-
 
             mario.draw();
             mario.image = mario.stop;

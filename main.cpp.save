@@ -89,7 +89,7 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_hit.bmp"),
                 txLoadImage("Images/right_stop.bmp"), 0, 400};
 
-
+bool sound = true;
 
    while(!btn2.click())
     {
@@ -99,6 +99,8 @@ Mario mario1 = { 1170, 500, 100, 108,
 
     if(PAGE == "menu")
     {
+        txPlaySound (NULL);
+        sound = true;
         xProgressBar=100;
         mario.healthy=400;
         mario1.healthy=400;
@@ -154,7 +156,7 @@ Mario mario1 = { 1170, 500, 100, 108,
 
         if(btn3.click())
         {
-         PAGE="н хцпе";
+         PAGE="на хцпе";
         btn1.visible = false;
         btn2.visible = false;
         btn3.visible = false;
@@ -180,10 +182,23 @@ Mario mario1 = { 1170, 500, 100, 108,
      {
       txSetFillColor(TX_BLACK);
       txSelectFont ("Arial", 35);
-      txTextOut(600, 20, "опюбхкю");
-      txTextOut(5, 100, "1.хцпюрэ аег вхрнб.");
-      txTextOut(5, 150, "2.бн бпелъ хцпш ме леьюрэ опнрхбмхйс рюо рюоюрэ он ймнонвйюл мнсрасйю.");
-      txTextOut(5, 200, "3.хцпюрэ аег мецюрхбю.");
+      txDrawText   (100, 0, 1270, 100, "опюбхкю");
+
+      txTextOut(25, 100, "1.хцпюрэ аег вхрнб.");
+      txTextOut(25, 135, "2.бн бпелъ хцпш ме леьюрэ опнрхбмхйс рюо рюоюрэ он ймнонвйюл мнсрасйю.");
+      txTextOut(25, 170, "3.хцпюрэ аег мецюрхбю.");
+      txTextOut(25, 205, "хцпю гюйюмвхбюеряъ оняке рнцн, йюй ндхм люпхн онаефдюер дпсцнцн.");
+
+      txDrawText   (100, 250, 1270, 700, "сопюбкемхе дкъ кебнцн люпхн: \n"
+                                         "A-бкебн \n"
+                                         "D-бопюбн \n"
+                                         "S-ббепу \n"
+                                         "W-сдюп \n"
+                                         "сопюбкемхе дкъ опюбнцн люпхн: \n"
+                                         "ярпекйю бкебн-бкебн \n"
+                                         "ОНЯКЕ РНЦН, ЙЮЙ НДХМ лЮПХН ОНАЕФДЮЕР ДПСЦНЦН \n"
+                                         "ОНЯКЕ РНЦН, ЙЮЙ НДХМ лЮПХН ОНАЕФДЮЕР ДПСЦНЦН \n"
+                                         "ОНЯКЕ РНЦН, ЙЮЙ НДХМ лЮПХН ОНАЕФДЮЕР ДПСЦНЦН \n");                                                 );
 
       if(GetAsyncKeyState(VK_ESCAPE))
       {
@@ -227,7 +242,6 @@ Mario mario1 = { 1170, 500, 100, 108,
           txSelectFont ("Arial", 35);
           txTextOut(600, 20, "гюцпсгйю...");
 
-
           txSetFillColor (TX_LIGHTGRAY);
 
           while(xProgressBar<1270)
@@ -238,10 +252,9 @@ Mario mario1 = { 1170, 500, 100, 108,
           }
 
      //хЦПЮ
-            txPlaySound ("Rammstein - Du hast.mp3");
+
 
             txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
-
 
             mario.draw();
             mario.image = mario.stop;
@@ -263,7 +276,11 @@ Mario mario1 = { 1170, 500, 100, 108,
             txSetFillColor(TX_ORANGE);
             txRectangle (870, 50, 870+mario1.healthy, 75);
 
-
+            if(sound)
+            {
+                txPlaySound ("fite.wav");
+                sound=false;
+            }
 
             if (GetAsyncKeyState('D'))
             {
