@@ -93,8 +93,8 @@ bool sound = true;
 
    while(!btn2.click())
     {
-     txBegin();
      txClear();
+     txBegin();
  //меню
 
     if(PAGE == "menu")
@@ -208,9 +208,8 @@ bool sound = true;
 
      }
 
-     if(PAGE == "О ИГРЕ")
+     if(PAGE == "ОБ ИГРЕ")
      {
-      txSetFillColor(TX_BLACK);
       txSelectFont ("Arial", 40);
       txTextOut(5, 50, "СЮЖЕТ");
       txTextOut(5, 100, "Два марио подрались из-за найденной ими сосиской и началась ожесточённая битва за сосиску!");
@@ -435,7 +434,7 @@ bool sound = true;
 
       }
      txEnd();
-     txSleep(10);
+     txSleep(50);
 
 
     }

@@ -93,8 +93,8 @@ bool sound = true;
 
    while(!btn2.click())
     {
-     txBegin();
      txClear();
+     txBegin();
  //меню
 
     if(PAGE == "menu")
@@ -181,7 +181,7 @@ bool sound = true;
      if(PAGE == "ПРАВИЛА")
      {
       txSetFillColor(TX_BLACK);
-      txSelectFont ("Arial", 35);
+      txSelectFont ("Arial", 33);
       txDrawText   (100, 0, 1270, 100, "ПРАВИЛА");
 
       txTextOut(25, 100, "1.ИГРАТЬ БЕЗ ЧИТОВ.");
@@ -196,9 +196,9 @@ bool sound = true;
                                          "W-УДАР \n"
                                          "УПРАВЛЕНИЕ ДЛЯ ПРАВОГО МАРИО: \n"
                                          "СТРЕЛКА ВЛЕВО-ВЛЕВО \n"
-                                         "после того, как один Марио побеждает другого \n"
-                                         "после того, как один Марио побеждает другого \n"
-                                         "после того, как один Марио побеждает другого \n");                                                 );
+                                         "СТРЕЛКА ВПРАВО-ВПРАВО \n"
+                                         "СТРЕЛКА ВНИЗ-ВВЕРХ \n"
+                                         "СТРЕЛКА ВВЕРХ-УДАР \n");
 
       if(GetAsyncKeyState(VK_ESCAPE))
       {
@@ -208,9 +208,8 @@ bool sound = true;
 
      }
 
-     if(PAGE == "О ИГРЕ")
+     if(PAGE == "ОБ ИГРЕ")
      {
-      txSetFillColor(TX_BLACK);
       txSelectFont ("Arial", 40);
       txTextOut(5, 50, "СЮЖЕТ");
       txTextOut(5, 100, "Два марио подрались из-за найденной ими сосиской и началась ожесточённая битва за сосиску!");
@@ -435,7 +434,7 @@ bool sound = true;
 
       }
      txEnd();
-     txSleep(10);
+     txSleep(30);
 
 
     }
