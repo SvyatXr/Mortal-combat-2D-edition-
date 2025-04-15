@@ -212,7 +212,7 @@ bool sound = true;
      {
       txSelectFont ("Arial", 40);
       txTextOut(5, 50, "СЮЖЕТ");
-      txTextOut(5, 100, "Два марио подрались из-за найденной ими сосиской и началась ожесточённая битва за сосиску!");
+      txTextOut(5, 100, "Два марио подрались из-за найденной ими сосиски и началась ожесточённая битва за сосиску!");
       txSelectFont ("Arial", 50);
       txTextOut(600, 20, "O ИГРЕ");
       txSelectFont ("Arial", 35);
@@ -277,8 +277,16 @@ bool sound = true;
 
             if(sound)
             {
-                txPlaySound ("fite.wav");
-                sound=false;
+                if(GetAsyncKeyState('1'))
+                {
+                    txPlaySound ("fite.wav");
+                    sound=false;
+                }   
+                if(GetAsyncKeyState('2'))
+                {
+                    txPlaySound ("fite2.wav");
+                    sound=false;
+                }
             }
 
             if (GetAsyncKeyState('D'))
@@ -434,7 +442,7 @@ bool sound = true;
 
       }
      txEnd();
-     txSleep(30);
+     txSleep(10);
 
 
     }

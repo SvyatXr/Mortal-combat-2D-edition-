@@ -277,8 +277,18 @@ bool sound = true;
 
             if(sound)
             {
-                txPlaySound ("fite.wav");
-                sound=false;
+                if(GetAsyncKeyState('1'))
+                {
+                    txPlaySound (NULL);
+                    txPlaySound ("fite.wav");
+                    sound=false;
+                }
+                if(GetAsyncKeyState('2'))
+                {
+                    txPlaySound (NULL);
+                    txPlaySound ("fite2.wav");
+                    sound=false;
+                }
             }
 
             if (GetAsyncKeyState('D'))
@@ -434,7 +444,7 @@ bool sound = true;
 
       }
      txEnd();
-     txSleep(50);
+     txSleep(10);
 
 
     }
