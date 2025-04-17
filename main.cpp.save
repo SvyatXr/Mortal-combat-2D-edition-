@@ -69,7 +69,7 @@ int xProgressBar = 100;
 
 Button btn1 = {10, 80, 220, 150, "хцпюрэ", true};
 Button btn2 = {10, 530, 220, 150, "бшунд", true};
-Button btn3 = {10, 380, 220, 150, "н хцпе", true};
+Button btn3 = {10, 380, 220, 150, "на хцпе", true};
 Button btn4 = {10, 230, 220, 150, "опюбхкю", true};
 
 int n_cadr = 0;
@@ -89,7 +89,6 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_hit.bmp"),
                 txLoadImage("Images/right_stop.bmp"), 0, 400};
 
-bool sound = true;
 
    while(!btn2.click())
     {
@@ -100,7 +99,6 @@ bool sound = true;
     if(PAGE == "menu")
     {
         txPlaySound (NULL);
-        sound = true;
         xProgressBar=100;
         mario.healthy=400;
         mario1.healthy=400;
@@ -185,7 +183,7 @@ bool sound = true;
       txDrawText   (100, 0, 1270, 100, "опюбхкю");
 
       txTextOut(25, 100, "1.хцпюрэ аег вхрнб.");
-      txTextOut(25, 135, "2.бн бпелъ хцпш ме леьюрэ опнрхбмхйс рюо рюоюрэ он ймнонвйюл мнсрасйю.");
+      txTextOut(25, 135, "2.бн бпелъ хцпш ме леьюрэ опнрхбмхйс мюфхлюрэ ймнойх мнсрасйю.");
       txTextOut(25, 170, "3.хцпюрэ аег мецюрхбю.");
       txTextOut(25, 205, "хцпю гюйюмвхбюеряъ оняке рнцн, йюй ндхм люпхн онаефдюер дпсцнцн.");
 
@@ -275,19 +273,19 @@ bool sound = true;
             txSetFillColor(TX_ORANGE);
             txRectangle (870, 50, 870+mario1.healthy, 75);
 
-            if(sound)
+
+
+            if(GetAsyncKeyState('1'))
             {
-                if(GetAsyncKeyState('1'))
-                {
-                    txPlaySound ("fite.wav");
-                    sound=false;
-                }   
-                if(GetAsyncKeyState('2'))
-                {
-                    txPlaySound ("fite2.wav");
-                    sound=false;
-                }
+                txPlaySound (NULL);
+                txPlaySound ("fite.wav");
             }
+            if(GetAsyncKeyState('2'))
+            {
+                txPlaySound (NULL);
+                txPlaySound ("fite2.wav");
+            }
+
 
             if (GetAsyncKeyState('D'))
             {
