@@ -285,6 +285,11 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txPlaySound (NULL);
                 txPlaySound ("fite2.wav");
             }
+            if(GetAsyncKeyState('3'))
+            {
+                txPlaySound (NULL);
+                txPlaySound ("fite3.wav");
+            }
 
 
             if (GetAsyncKeyState('D'))
