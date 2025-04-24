@@ -1,4 +1,10 @@
 #include "TXLib.h"
+#include <iostream>
+#include <chrono>
+#include <thread>
+using namespace std;
+using namespace std::chrono;
+
 struct Button
 {
 
@@ -46,13 +52,28 @@ struct Mario
    }
 };
 
-
-
 void drawProgressBar(int x)
 {
     txSetColor(TX_BLUE);
     txSetFillColor(TX_BLUE);
     txCircle(x, 300, 50);
+}
+
+bool timer()
+{
+    int seconds = 0;
+    while (true)
+    {
+        seconds++;
+        if (seconds==60)
+        {
+            seconds = 0;
+            return true;
+        }
+        this_thread::sleep_for(0.999s);
+        system("cls");
+    }
+
 }
 
 //!GetAsyncKeyState(VK_ESCAPE)
@@ -89,6 +110,12 @@ Mario mario1 = { 1170, 500, 100, 108,
                 txLoadImage("Images/right_hit.bmp"),
                 txLoadImage("Images/right_stop.bmp"), 0, 400};
 
+
+int r = 0;
+bool timer_time = false;
+char str[100];
+
+timer_time = timer();
 
    while(!btn2.click())
     {
@@ -253,9 +280,9 @@ Mario mario1 = { 1170, 500, 100, 108,
 
             txBitBlt(txDC(), 0, 0, 1370, 710, image_AJY);
 
-            mario.draw();
+            //mario.draw();
             mario.image = mario.stop;
-            mario1.draw();
+            //mario1.draw();
             mario1.image = mario1.stop;
 
             txSetColor (TX_WHITE, 5);
@@ -296,7 +323,7 @@ Mario mario1 = { 1170, 500, 100, 108,
             {
                 mario.x += 20;
                 mario.image = mario.run;
-                txSleep(50);
+                txSleep(15);
                 mario.n_cadr+=1;
                 if(mario.n_cadr>1) mario.n_cadr=0;
 
@@ -366,7 +393,7 @@ Mario mario1 = { 1170, 500, 100, 108,
             {
                 mario1.x -= 20;
                 mario1.image = mario1.run;
-                txSleep(50);
+                txSleep(15);
                 mario1.n_cadr+=1;
                 if(mario1.n_cadr>1) mario1.n_cadr=0;
 
@@ -417,6 +444,32 @@ Mario mario1 = { 1170, 500, 100, 108,
              }
 
 
+            if (GetAsyncKeyState(VK_SPACE) && timer_time)
+            {
+               r = rand();
+               if(r%2==0)
+               {
+                mario.healthy -= 10;
+               }
+               else
+               {
+                mario1.healthy -= 10;
+               }
+            }
+
+            if (GetAsyncKeyState('Q'))
+            {
+                 txCircle(mario.x+mario.w/2, mario.y+mario.h/2, 200);
+            }
+
+
+            sprintf(str, "%d", timer_time);
+            txTextOut(0, 0, str);
+
+
+
+            mario.draw();
+            mario1.draw();
       }
 
       if(PAGE == "йнмеж")
