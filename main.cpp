@@ -1,9 +1,4 @@
 #include "TXLib.h"
-#include <iostream>
-#include <chrono>
-#include <thread>
-using namespace std;
-using namespace std::chrono;
 
 struct Button
 {
@@ -46,6 +41,7 @@ struct Mario
     int n_cadr;
     int healthy;
 
+
    void draw()
    {
         txTransparentBlt(txDC(), x, y, w, h, image, n_cadr*100, 0, TX_WHITE);
@@ -59,22 +55,7 @@ void drawProgressBar(int x)
     txCircle(x, 300, 50);
 }
 
-bool timer()
-{
-    int seconds = 0;
-    while (true)
-    {
-        seconds++;
-        if (seconds==60)
-        {
-            seconds = 0;
-            return true;
-        }
-        this_thread::sleep_for(0.999s);
-        system("cls");
-    }
 
-}
 
 //!GetAsyncKeyState(VK_ESCAPE)
 int main()
@@ -112,10 +93,9 @@ Mario mario1 = { 1170, 500, 100, 108,
 
 
 int r = 0;
-bool timer_time = false;
-char str[100];
 
-timer_time = timer();
+
+
 
    while(!btn2.click())
     {
@@ -235,6 +215,7 @@ timer_time = timer();
 
      if(PAGE == "ОБ ИГРЕ")
      {
+      txSetColor(TX_WHITE);
       txSelectFont ("Arial", 40);
       txTextOut(5, 50, "СЮЖЕТ");
       txTextOut(5, 100, "Два марио подрались из-за найденной ими сосиски и началась ожесточённая битва за сосиску!");
@@ -353,7 +334,6 @@ timer_time = timer();
             if(mario.image == mario.hit && mario.x+mario.w>mario1.x && mario.x<mario1.x && mario.y<mario1.y+mario1.h && mario.y+mario.h>mario1.y)
             {
                 mario1.healthy -= 10;
-
             }
 
 
@@ -444,27 +424,24 @@ timer_time = timer();
              }
 
 
-            if (GetAsyncKeyState(VK_SPACE) && timer_time)
-            {
-               r = rand();
-               if(r%2==0)
-               {
-                mario.healthy -= 10;
-               }
-               else
-               {
-                mario1.healthy -= 10;
-               }
-            }
+
 
             if (GetAsyncKeyState('Q'))
             {
-                 txCircle(mario.x+mario.w/2, mario.y+mario.h/2, 200);
+                 txCircle(mario.x+mario.w/2, mario.y+mario.h/2, 125);
+                 txSleep(20);
+
+                if(mario.x+mario.w/2+125>mario1.x && mario.x+mario.w/2<mario1.x && mario.y<mario1.y+mario1.h && mario.y+ mario.h>mario1.y)
+                {
+                     mario1.healthy -= 5;
+                }
+            }
+            if (GetAsyncKeyState(VK_SHIFT))
+            {
+                 txCircle(mario1.x+mario1.w/2, mario1.y+mario1.h/2, 125);
+                 txSleep(20);
             }
 
-
-            sprintf(str, "%d", timer_time);
-            txTextOut(0, 0, str);
 
 
 
